@@ -1,45 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Cyber Clicker</title>
+  <title>Cyber Hack Challenge</title>
   <style>
     body {
       text-align: center;
       font-family: Arial;
       background: black;
-      color: lime;
+      color: #00ffcc;
     }
     button {
       padding: 20px;
-      font-size: 20px;
+      font-size: 18px;
       margin-top: 20px;
-      background: lime;
+      background: #00ffcc;
       border: none;
       cursor: pointer;
     }
     button:hover {
-      background: green;
+      background: #00cc99;
       color: white;
     }
   </style>
 </head>
 <body>
 
-<h1>💻 Cyber Clicker</h1>
+<h1>💻 Cyber Hack Challenge</h1>
 <p>Score: <span id="score">0</span></p>
-<p>Time Left: <span id="time">10</span>s</p>
+<p>Time Left: <span id="time">15</span>s</p>
+<p id="status">Start hacking...</p>
 
 <button onclick="hack()">HACK 🔓</button>
 
 <script>
 let score = 0;
-let timeLeft = 10;
+let timeLeft = 15;
 let gameActive = true;
 
 function hack() {
   if (gameActive) {
     score++;
     document.getElementById("score").innerText = score;
+
+    if (score > 20) {
+      document.getElementById("status").innerText = "🔥 Access Level: ROOT";
+    } else if (score > 10) {
+      document.getElementById("status").innerText = "⚡ Access Level: ADMIN";
+    }
   }
 }
 
@@ -50,7 +57,8 @@ let timer = setInterval(() => {
   } else {
     gameActive = false;
     clearInterval(timer);
-    alert("💀 System Locked! Your Score: " + score);
+    document.getElementById("status").innerText = "💀 System Locked!";
+    alert("Final Score: " + score);
   }
 }, 1000);
 </script>
